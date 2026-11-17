@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Angel Ayala Paula — Cybersecurity Portfolio</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --bg-soft: #f6f7f6;
+        --surface: #ffffff;
+        --ink: #17211b;
+        --ink-soft: #44534a;
+        --ink-faint: #71807a;
+        --line: #e2e7e3;
+        --accent: #157347;
+        --accent-ink: #ffffff;
+        --accent-soft: #e9f4ee;
+        --code-bg: #14201a;
+        --code-ink: #d9e8de;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101512;
+          --bg-soft: #161c18;
+          --surface: #161c18;
+          --ink: #e8ede9;
+          --ink-soft: #b7c2ba;
+          --ink-faint: #8b978f;
+          --line: #2a332d;
+          --accent: #4cc38a;
+          --accent-ink: #0b1510;
+          --accent-soft: #1d2b23;
+          --code-bg: #0b100d;
+          --code-ink: #d9e8de;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+      a { color: var(--accent); }
+      a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      nav.top {
+        position: sticky; top: 0; z-index: 20;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+      }
+      nav.top .wrap {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap;
+      }
+      .brand { font-weight: 700; font-size: 1rem; color: var(--ink); text-decoration: none; }
+      .navlinks { display: flex; gap: 4px; flex-wrap: wrap; }
+      .navlinks a {
+        color: var(--ink-soft); text-decoration: none; font-size: 0.9rem;
+        padding: 6px 10px; border-radius: 6px; display: inline-flex; align-items: center; min-height: 32px;
+      }
+      .navlinks a:hover { color: var(--ink); background: var(--bg-soft); }
+
+      header.hero { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+      .status { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin: 0 0 16px; }
+      h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.12; font-weight: 750; margin: 0 0 14px; letter-spacing: -0.02em; }
+      .hero-role { font-size: 1.13rem; color: var(--ink-soft); max-width: 620px; margin: 0 0 10px; }
+      .hero-role strong { color: var(--ink); }
+      .hero-meta { font-size: 0.92rem; color: var(--ink-faint); margin: 14px 0 26px; }
+      .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 10px 18px; font-weight: 600; font-size: 0.95rem;
+        text-decoration: none; border: 1px solid var(--line); border-radius: 8px;
+        color: var(--ink); background: var(--surface); min-height: 44px;
+      }
+      .btn:hover { border-color: var(--accent); }
+      .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+      .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
+      .stat { border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--surface); }
+      .stat .num { font-size: 1.1rem; font-weight: 700; line-height: 1.25; }
+      .stat .lbl { font-size: 0.84rem; color: var(--ink-faint); margin-top: 4px; line-height: 1.45; }
+      @media (max-width: 700px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+
+      section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+      section:last-of-type { border-bottom: none; }
+      h2 { font-size: 1.55rem; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+      .sec-sub { color: var(--ink-faint); margin: 0 0 28px; max-width: 620px; }
+      h3 { font-size: 1.03rem; margin: 0 0 6px; }
+
+      .two-col { display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; }
+      @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+      .about p { margin: 0 0 14px; color: var(--ink-soft); }
+      .about p strong { color: var(--ink); }
+      .fact-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; height: fit-content; background: var(--surface); }
+      .fact-list li { padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+      .fact-list li:last-child { border-bottom: none; }
+      .fact-list .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-faint); display: block; margin-bottom: 2px; font-weight: 600; }
+
+      .ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      @media (max-width: 760px) { .ach-grid { grid-template-columns: 1fr; } }
+      .ach { border: 1px solid var(--line); border-radius: 10px; padding: 20px; background: var(--surface); }
+      .ach .label { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 10px; }
+      .ach p { margin: 0; color: var(--ink-soft); font-size: 0.93rem; }
+
+      .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+      .chip {
+        font-size: 0.88rem; font-weight: 600; cursor: pointer;
+        padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+        background: var(--surface); color: var(--ink-soft); min-height: 38px;
+      }
+      .chip:hover { border-color: var(--accent); color: var(--ink); }
+      .chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+      .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      @media (max-width: 760px) { .proj-grid { grid-template-columns: 1fr; } }
+      .proj { border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px; background: var(--surface); }
+      .proj.hidden { display: none; }
+      .proj .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+      .tag { font-size: 0.74rem; background: var(--bg-soft); color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; }
+      .proj p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; flex: 1; }
+      .proj a.repo-link { font-weight: 600; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; overflow-wrap: anywhere; }
+      .proj a.repo-link:hover { text-decoration: underline; }
+      .proj .repo-note { font-size: 0.86rem; color: var(--ink-faint); }
+
+      .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+      @media (max-width: 820px) { .case-grid { grid-template-columns: 1fr; } }
+      .log {
+        background: var(--code-bg); color: var(--code-ink); border-radius: 10px;
+        padding: 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.82rem; line-height: 1.7; overflow-wrap: anywhere; white-space: pre-wrap;
+      }
+      .log .dim { opacity: 0.65; }
+      .timeline { list-style: none; margin: 0; padding: 0; }
+      .timeline li { position: relative; padding: 0 0 16px 20px; border-left: 2px solid var(--line); margin-left: 4px; }
+      .timeline li:last-child { padding-bottom: 0; }
+      .timeline li::before { content: ""; position: absolute; left: -5px; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+      .timeline .t { font-size: 0.8rem; color: var(--ink-faint); font-weight: 700; font-variant-numeric: tabular-nums; }
+      .timeline .e { font-size: 0.93rem; color: var(--ink-soft); }
+      .timeline .e strong { color: var(--ink); }
+      .lesson { background: var(--accent-soft); border-radius: 10px; padding: 16px 18px; margin-top: 18px; }
+      .lesson .lk { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; }
+      .lesson p { color: var(--ink-soft); font-size: 0.93rem; margin: 0; }
+      .lesson code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; }
+
+      .skill-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      @media (max-width: 760px) { .skill-groups { grid-template-columns: 1fr; } }
+      .skill-group { border: 1px solid var(--line); border-radius: 10px; padding: 20px; background: var(--surface); }
+      .skill-group h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-faint); margin-bottom: 14px; }
+      .skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+      .skill-group li { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; color: var(--ink-soft); font-size: 0.84rem; }
+
+      .exp-list { display: flex; flex-direction: column; }
+      .exp { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+      .exp:last-child { border-bottom: none; }
+      @media (max-width: 640px) { .exp { grid-template-columns: 1fr; gap: 6px; } }
+      .exp .when { font-size: 0.85rem; color: var(--ink-faint); padding-top: 3px; }
+      .exp .where { color: var(--ink-faint); margin-bottom: 6px; font-size: 0.88rem; }
+      .exp p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; max-width: 620px; }
+
+      footer { padding: 48px 0 56px; }
+      .contact-card { border: 1px solid var(--line); border-radius: 12px; padding: 32px 28px; background: var(--bg-soft); }
+      .contact-card h2 { margin-bottom: 8px; }
+      .contact-card p { color: var(--ink-soft); max-width: 580px; margin: 0 0 24px; }
+      .foot-note { margin-top: 24px; font-size: 0.84rem; color: var(--ink-faint); }
+
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+  </head>
+  <body>
+    <nav class="top">
+      <div class="wrap">
+        <a class="brand" href="#top">Angel Ayala Paula</a>
+        <div class="navlinks">
+          <a href="#about">About</a><a href="#projects">Projects</a><a href="#case-study">Case study</a><a href="#skills">Toolkit</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="wrap">
+        <p class="status">Open to Summer 2027 cybersecurity internships</p>
+        <h1>Angel Ayala Paula</h1>
+        <p class="hero-role">Cybersecurity student focused on <strong>blue team operations, incident response, and digital forensics</strong> — defending systems, reading logs, and reconstructing what actually happened.</p>
+        <p class="hero-meta">Pompano Beach, FL · Florida Atlantic University · Class of July 2027 · Security+ in progress, exam target December 2026</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/Angelaap12" target="_blank" rel="noopener">GitHub — Angelaap12</a>
+          <a class="btn" href="https://www.linkedin.com/in/angel-ayala-614269370" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="#projects">View projects</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">1st Place</div><div class="lbl">Overall, Horse Plinko Cyber Challenge 4 — Oct 2026</div></div>
+          <div class="stat"><div class="num">CPTC 2026</div><div class="lbl">Regional competitor, Collegiate Penetration Testing Competition</div></div>
+          <div class="stat"><div class="num">3.3 GPA</div><div class="lbl">BBA in MIS, Cybersecurity concentration, FAU</div></div>
+          <div class="stat"><div class="num">Dec 2026</div><div class="lbl">CompTIA Security+ (SY0-701) exam target — in progress</div></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about">
+        <div class="wrap">
+          <h2>About</h2>
+          <p class="sec-sub">Blue team first: I like defending services and computers from threats, and I like the forensics work of proving how an incident unfolded.</p>
+          <div class="two-col">
+            <div class="about">
+              <p>I'm a senior at <strong>Florida Atlantic University</strong> pursuing a BBA in Management Information Systems with a concentration in Cybersecurity. I transferred to FAU in August 2025 after earning my Associate's Degree at Broward College.</p>
+              <p>Since August 2026 I've been an <strong>officer and competitor with the FAU Cybersecurity Club</strong> — competing at CPTC regionals and taking 1st Place Overall at the Horse Plinko Cyber Challenge 4, where my work centered on Windows hardening and incident response under time pressure.</p>
+              <p>My hands-on strengths are <strong>digital forensics</strong> (Autopsy, FTK Imager), <strong>network analysis</strong> (Wireshark, Nmap), <strong>Windows hardening</strong>, and log-driven investigation on Linux. I'm currently studying for CompTIA Security+ and actively building toward <strong>cloud security</strong>, the area I most want to grow in next through an internship in SOC, incident response, or forensics.</p>
+            </div>
+            <ul class="fact-list">
+              <li><span class="k">University</span>Florida Atlantic University — Boca Raton, FL</li>
+              <li><span class="k">Degree</span>BBA, Management Information Systems · Cybersecurity concentration</li>
+              <li><span class="k">Expected graduation</span>July 2027</li>
+              <li><span class="k">Focus areas</span>SOC · Incident Response · Digital Forensics · Cloud Security (learning)</li>
+              <li><span class="k">Languages</span>English (fluent) · Portuguese (advanced) · Spanish (intermediate)</li>
+              <li><span class="k">Work authorization</span>Authorized to work in the U.S.; no sponsorship required</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements">
+        <div class="wrap">
+          <h2>Competition highlights</h2>
+          <p class="sec-sub">Where the skills below were tested against live systems and other teams.</p>
+          <div class="ach-grid">
+            <div class="ach"><span class="label">1st Place Overall</span><h3>Horse Plinko Cyber Challenge 4</h3><p>October 2026. Top overall finish in a blue-team challenge built around defending and hardening Windows systems — the experience behind my Windows Hardening Checks project.</p></div>
+            <div class="ach"><span class="label">Regional Competitor</span><h3>CPTC 2026</h3><p>Collegiate Penetration Testing Competition regionals with the FAU Cybersecurity Club — penetration testing and web application testing against a live target environment.</p></div>
+            <div class="ach"><span class="label">Officer &amp; Competitor</span><h3>FAU Cybersecurity Club</h3><p>Club officer since August 2026. Competing, practicing, and helping run the community where most of my hands-on training happens.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="wrap">
+          <h2>Projects</h2>
+          <p class="sec-sub">Two public GitHub projects, plus the lab and study work behind them.</p>
+          <div class="filter-row" role="group" aria-label="Filter projects">
+            <button class="chip" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="forensics" aria-pressed="false">Forensics</button>
+            <button class="chip" data-filter="hardening" aria-pressed="false">Hardening</button>
+            <button class="chip" data-filter="labs" aria-pressed="false">Labs &amp; notes</button>
+          </div>
+          <div class="proj-grid">
+            <article class="proj" data-cat="forensics">
+              <h3>Hack The Box Sherlock Write-ups</h3>
+              <div class="tags"><span class="tag">Digital Forensics</span><span class="tag">Log Analysis</span><span class="tag">Linux</span></div>
+              <p>Full forensic write-ups of HTB Sherlock investigations, including Brutus — an SSH brute-force investigation reconstructed from auth.log and wtmp evidence, with my real terminal screenshots and troubleshooting notes.</p>
+              <a class="repo-link" href="https://github.com/Angelaap12/hackthebox-sherlock-writeups" target="_blank" rel="noopener">github.com/Angelaap12/hackthebox-sherlock-writeups →</a>
+            </article>
+            <article class="proj" data-cat="hardening">
+              <h3>Windows Hardening Checks</h3>
+              <div class="tags"><span class="tag">PowerShell</span><span class="tag">Windows Hardening</span><span class="tag">Blue Team</span></div>
+              <p>A read-only PowerShell audit script that checks a Windows system's hardening posture, built from what actually scored at Horse Plinko — safe to run, changes nothing on the machine it audits.</p>
+              <a class="repo-link" href="https://github.com/Angelaap12/windows-hardening-checks" target="_blank" rel="noopener">github.com/Angelaap12/windows-hardening-checks →</a>
+            </article>
+            <article class="proj" data-cat="labs">
+              <h3>Forensics Lab: FTK Imager &amp; Autopsy</h3>
+              <div class="tags"><span class="tag">FTK Imager</span><span class="tag">Autopsy</span><span class="tag">Disk Forensics</span></div>
+              <p>Hands-on lab work acquiring and examining disk evidence: imaging with FTK Imager, then analysis in Autopsy — file recovery, artifact examination, and documenting findings step by step.</p>
+              <span class="repo-note">Lab work · documented as a written write-up</span>
+            </article>
+            <article class="proj" data-cat="labs">
+              <h3>Local AI Cybersecurity Assistant</h3>
+              <div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">In Development</span></div>
+              <p>A personal project in development: exploring a locally run AI assistant for cybersecurity study and lab work. Listed on my GitHub profile README while the code is being built out.</p>
+              <span class="repo-note">In development · no public repo yet</span>
+            </article>
+            <article class="proj" data-cat="labs">
+              <h3>Security+ Study Notes — Domain 1</h3>
+              <div class="tags"><span class="tag">CompTIA Security+</span><span class="tag">SY0-701</span><span class="tag">Fundamentals</span></div>
+              <p>My working notes for the SY0-701 exam (target: December 22, 2026) — security controls, the CIA triad, Zero Trust planes, PKI, and threat actors, written as I study each domain.</p>
+              <span class="repo-note">Study in progress · exam Dec 22, 2026</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="case-study">
+        <div class="wrap">
+          <h2>Case study: Brutus</h2>
+          <p class="sec-sub">An SSH brute-force investigation on Hack The Box — how I connected auth.log, wtmp, and sudo records into one timeline. Full write-up in the Sherlock repo above.</p>
+          <div class="case-grid">
+            <div class="log" aria-label="Log excerpt from the Brutus investigation"><span class="dim">$ grep "Failed password" auth.log | head</span>
+Failed password for root from 65.2.161.68
+Failed password for admin from 65.2.161.68
+Failed password for svc_account from 65.2.161.68
+
+<span class="dim">$ grep "Accepted password" auth.log</span>
+Accepted password for root from 65.2.161.68 port 53184
+
+<span class="dim">$ grep "new user" auth.log</span>
+useradd: new user: name=cyberjunkie, UID=1002
+
+<span class="dim">$ grep "sudo:" auth.log</span>
+cyberjunkie : COMMAND=/usr/bin/cat /etc/shadow</div>
+            <div>
+              <h3 style="margin-bottom:14px">Reconstructed timeline — Mar 6, 2024 (UTC)</h3>
+              <ol class="timeline">
+                <li><span class="t">06:31:31</span><div class="e">Burst of <strong>failed SSH logins</strong> from 65.2.161.68 across multiple usernames</div></li>
+                <li><span class="t">06:32:44</span><div class="e">Successful <strong>root authentication</strong> from the same IP</div></li>
+                <li><span class="t">06:34:18</span><div class="e">New account <strong>cyberjunkie</strong> created during the root session</div></li>
+                <li><span class="t">06:35:15</span><div class="e">cyberjunkie added to the <strong>sudo group</strong> — persistence established</div></li>
+                <li><span class="t">06:37:57</span><div class="e">cyberjunkie reads <strong>/etc/shadow</strong> via sudo</div></li>
+                <li><span class="t">06:39:38</span><div class="e">cyberjunkie uses sudo <strong>curl</strong> to fetch an external shell script</div></li>
+              </ol>
+              <div class="lesson">
+                <span class="lk">What I learned</span>
+                <p>No single log told the story. SSH records showed initial access, wtmp confirmed the sessions, and account/sudo events showed what the attacker did with it. I also had to work around a missing <code>utmpdump</code> by extracting it from a Debian package — evidence is only useful if you can actually read it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="wrap">
+          <h2>Toolkit</h2>
+          <p class="sec-sub">Tools and techniques I use in competitions, labs, and investigations.</p>
+          <div class="skill-groups">
+            <div class="skill-group"><h3>Digital Forensics</h3><ul><li>Autopsy</li><li>FTK Imager</li><li>Log analysis</li><li>utmp / wtmp analysis</li><li>Evidence handling</li></ul></div>
+            <div class="skill-group"><h3>Network &amp; Recon</h3><ul><li>Wireshark</li><li>Nmap</li><li>Traffic analysis</li><li>SSH / auth log review</li></ul></div>
+            <div class="skill-group"><h3>Defense &amp; Response</h3><ul><li>Windows hardening</li><li>Incident response</li><li>SOC alert triage concepts</li><li>Account &amp; privilege auditing</li></ul></div>
+            <div class="skill-group"><h3>Systems &amp; Scripting</h3><ul><li>Linux / Kali</li><li>PowerShell</li><li>Python</li><li>Penetration testing</li><li>Web app testing</li></ul></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="wrap">
+          <h2>Experience &amp; education</h2>
+          <p class="sec-sub">The short version — security work up top, and the job that taught me reliability underneath it.</p>
+          <div class="exp-list">
+            <div class="exp"><div class="when">Aug 2026 — Present</div><div><h3>Cybersecurity Club Officer &amp; Competitor</h3><div class="where">Florida Atlantic University · Boca Raton, FL</div><p>Officer and competition team member. CPTC 2026 regional competitor; 1st Place Overall at Horse Plinko Cyber Challenge 4 (Oct 2026), focused on Windows hardening and incident response.</p></div></div>
+            <div class="exp"><div class="when">2025 — Jul 2027</div><div><h3>BBA, Management Information Systems — Cybersecurity</h3><div class="where">Florida Atlantic University · GPA 3.3</div><p>Transferred from Broward College (Associate's Degree) in August 2025. CompTIA Security+ (SY0-701) in progress, exam targeted for December 22, 2026.</p></div></div>
+            <div class="exp"><div class="when">Jun 2021 — Present</div><div><h3>Waiter</h3><div class="where">The Cove · Deerfield Beach, FL</div><p>Five years of weekends in a fast, high-volume dining room — the customer-facing reliability and calm-under-pressure that carries straight into incident response work.</p></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="wrap">
+        <div class="contact-card">
+          <h2>Let's talk internships</h2>
+          <p>I'm looking for Summer 2027 (and spring) internships in SOC, security analysis, incident response, IT support with security, or digital forensics — South Florida or remote. The fastest way to see my work is GitHub; the fastest way to reach me is LinkedIn.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://github.com/Angelaap12" target="_blank" rel="noopener">GitHub — Angelaap12</a>
+            <a class="btn" href="https://www.linkedin.com/in/angel-ayala-614269370" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          </div>
+        </div>
+        <p class="foot-note">Angel Ayala Paula · Pompano Beach, FL · Portfolio current as of November 2026</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var chips = document.querySelectorAll(".chip");
+        var projects = document.querySelectorAll(".proj");
+        chips.forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            var f = chip.getAttribute("data-filter");
+            chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+            projects.forEach(function (p) {
+              var show = f === "all" || p.getAttribute("data-cat") === f;
+              p.classList.toggle("hidden", !show);
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
